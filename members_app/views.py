@@ -10,8 +10,8 @@ def signup_user(request):
     if request.method == 'POST':
         if form.is_valid():
             try:
-                email = form.email_clean()
                 password = form.password_clean()
+                email = form.email_clean()
                 form.save()
                 user = authenticate(request, email=email, password=password)
                 if user is not None:

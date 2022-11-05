@@ -52,10 +52,12 @@ def requests_list(request):
         VacationRequest.REJECTED: VacationRequest.REJECTED,
     }
     filtered_requests = QuerySet
+    filtered_status = str()
     if 'status' in request.GET:
         if request.GET['status'] in statuses.values():
+            filtered_status = request.GET['status']
             filtered_requests = VacationRequest.objects.filter(
-                user_id=request.user.id, status=request.GET['status']).order_by('-id')
+                user_id=request.user.id, status=filtered_status).order_by('-id')
     if filtered_requests == QuerySet:
         filtered_requests = VacationRequest.objects.filter(
             user_id=request.user.id).order_by('-id')
@@ -66,5 +68,5 @@ def requests_list(request):
     if page_number is None:
         page_number = 1
     requests = list(zip([x for x in range((amount_of_items * int(page_number)) -
-                   amount_of_items + 1, amount_of_items * int(page_number) + 1)], page_obj))
-    return render(request, 'vacation_management_app/requests_list.html', {'requests': requests, 'statuses': statuses, 'page_obj': page_obj})
+                                          amount_of_items + 1, amount_of_items * int(page_number) + 1)], page_obj))
+    return render(request, 'vacation_management_app/requests_list.html', {'requests': requests, 'statuses': statuses, 'page_obj': page_obj, 'filtered_status': filtered_status})

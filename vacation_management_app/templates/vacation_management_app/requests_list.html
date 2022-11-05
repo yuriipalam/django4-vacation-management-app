@@ -1,6 +1,12 @@
 {% extends 'vacation_management_app/base.html' %}
 {% block content %}
 <div class="container mt-5 pb-2">
+    {% if not requests and not filtered_status %}
+    <div class="justify-content-center d-flex flex-column">
+        <h1 class="text-center">You don't have any requests</h1>
+        <a class="fs-5 text-center" href="{% url 'home' %}" style="text-decoration: none;">Home</a>
+    </div>
+    {% else %}
     <div class="d-flex justify-content-cetner align-items-center flex-column mb-5">
         <h1 class="text-center">Request history</h1>
         <div class="dropdown">
@@ -16,6 +22,8 @@
             </ul>
         </div>
     </div>
+    {% if not requests %}<h2 class="fw-normal text-center">There are no requests of <b>{{ filtered_status }}</b> status</h2>{% endif %}
+    {% endif %}
     {% if requests %}
     {% for index, request in requests %}
     <div class="mb-3">
@@ -28,9 +36,6 @@
         </div>
     </div>
     {% endfor %}
-    {% else %}
-    <h1>You don't have any requests</h1>
-    <a href="{% url 'home' %}">Home</a>
     {% endif %}
     {% if page_obj.has_other_pages %}
     <nav aria-label="Page navigation" class="pb-3 pt-2">
