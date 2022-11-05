@@ -1,0 +1,27 @@
+{% extends 'vacation_management_app/base.html' %}
+{% block content %}
+<!-- SignUpBar -->
+<div class="container d-flex justify-content-center align-items-center flex-column" style="height: inherit;">
+    <form class="col-sm-4" method="POST">
+        {% include 'vacation_management_app/messages.html' %}
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+            <label for="fullname" class="form-label">Full name</label>
+            <input type="text" class="form-control" id="fullname" name="fullname">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password">
+        </div>
+        <div class="mb-3">
+            <label for="password_repeat" class="form-label">Repeat Password</label>
+            <input type="password" class="form-control" id="password_repeat" name="password_repeat">
+        </div>
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+    </form>
+</div>
+{% endblock %}

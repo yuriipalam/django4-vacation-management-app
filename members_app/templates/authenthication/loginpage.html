@@ -1,0 +1,18 @@
+{% extends 'vacation_management_app/base.html' %}
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center" style="height: inherit;">
+    <form class="col-sm-4" method="POST">
+        {% include 'vacation_management_app/messages.html' %}
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp" required>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" name="password" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+</div>
+{% endblock content %}

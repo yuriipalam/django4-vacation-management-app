@@ -1,0 +1,85 @@
+{% extends 'vacation_management_app/base.html' %}
+{% block content %}
+<div class="container mt-5 pb-2">
+    <div class="d-flex justify-content-cetner align-items-center flex-column mb-5">
+        <h1 class="text-center">Request history</h1>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Filter status
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'requests_list' %}?status={{ statuses.Waiting }}">Waiting</a></li>
+                <li><a class="dropdown-item" href="{% url 'requests_list' %}?status={{ statuses.Approved }}">Approved</a></li>
+                <li><a class="dropdown-item" href="{% url 'requests_list' %}?status={{ statuses.Rejected }}">Rejected</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="{% url 'requests_list' %}">Clear filter</a></li>
+            </ul>
+        </div>
+    </div>
+    {% if requests %}
+    {% for index, request in requests %}
+    <div class="mb-3">
+        <div class="list-group list-group-light">
+            <h2 class="mb-2">Request {{ index }}{% if request.reason %}, <span class="fw-normal">{{ request.reason|truncatechars:40 }}</span>{% endif %}</h2>
+            <div class="list-group-item list-group-item-action px-3 border-0 rounded-3 mb-2 list-group-item-secondary d-flex justify-content-between align-items-start" data-bs-toggle="modal" data-bs-target="#modal{{ request.id }}" style="cursor: pointer;">
+                <div class="me-auto">{{ request.start_date|date:'j.m.Y' }} - {{ request.finish_date|date:'j.m.Y' }}</div>
+                <span class="badge text-bg-{% if request.status == statuses.Waiting %}primary{% elif request.status == statuses.Approved %}success{% else %}danger{% endif %}">{{ request.get_status_display }}</span>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <h1>You don't have any requests</h1>
+    <a href="{% url 'home' %}">Home</a>
+    {% endif %}
+    {% if page_obj.has_other_pages %}
+    <nav aria-label="Page navigation" class="pb-3 pt-2">
+        <ul class="pagination justify-content-center">
+          {% if page_obj.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          {% endif %}
+          {% for p in page_obj.paginator.page_range %}
+          {% if page_obj.number == p %}
+          <li class="page-item"><a class="page-link active" href="?page={{ p }}">{{ p }}</a></li>
+          {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
+          <li class="page-item"><a class="page-link" href="?page={{ p }}">{{ p }}</a></li>
+          {% endif %}
+          {% endfor %}
+          {% if page_obj.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+          {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+</div>
+<!-- Modal -->
+{% for index, request in requests %}
+<div class="modal fade" id="modal{{ request.id }}" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="ModalLabel">Request {{ index }}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        From: {{ request.start_date|date:'F d, Y' }}<br>
+        Till: {{ request.finish_date|date:'F d, Y' }}<br>
+        {% if request.reason %}{{ request.reason }}<br>{% endif %}
+        <span class="badge text-bg-{% if request.status == statuses.Waiting %}primary{% elif request.status == statuses.Approved %}success{% else %}danger{% endif %}">{{ request.get_status_display }}</span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Got it</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+{% endblock content %}
