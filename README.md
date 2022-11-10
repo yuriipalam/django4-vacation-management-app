@@ -11,9 +11,9 @@ Adminitrator can:
 - Manage all users and change their roles (None -> Viewer / Viewer -> Employee / Employee -> None, etc)
 - Allow/Reject requests from users, default status of each request is Waiting (Waiting -> Rejected / Waiting -> Approved / Rejected -> Waiting, etc)
 
-Users (Viewer/Employee) can see all their requests and filter them by status. CalendarView is used to choose dates (Start date and Finish date)
+Users (Viewer/Employee) can see all their requests and filter them by status. CalendarView is used to choose dates (Start date and Finish date).
 
-The app was built with Django 4. Bootstrap is used for Front-End
+The app was built with Django 4. Bootstrap 5 is used for Front-End.
 - Login/Registration
 - SQLite3 DataBase
 - Multiple pages
