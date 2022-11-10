@@ -1,6 +1,6 @@
 # Vacation Management App
 
-This is app helps employees to request leaves from administrators.
+This app helps employees to request leaves from administrators.
 
 There are 3 roles of user:
 - None (Does not have permission to the panel, unless accepted by administrator)
