@@ -17,5 +17,5 @@ The app was built with Django 4. Bootstrap 5 is used for Front-End.
 - Login/Registration
 - SQLite3 DataBase
 - Multiple pages
-- Two apps (Members, Manaagement System)
+- Two apps (Members, Management System)
 - Auth system via email
