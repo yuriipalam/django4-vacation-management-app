@@ -8,8 +8,8 @@ There are 3 roles of user:
 - Employee (Allowed to create requests to be reviewed by administrator)
 
 Adminitrator can:
-- Manage all users and change their roles (None -> Viewer / Viewer -> Employee / Employee -> None, etc)
-- Allow/Reject requests from users, default status of each request is Waiting (Waiting -> Rejected / Waiting -> Approved / Rejected -> Waiting, etc)
+- Manage all users and change their roles (None -> Viewer, Viewer -> Employee, Employee -> None, etc)
+- Allow/Reject requests from users, default status of each request is Waiting (Waiting -> Rejected, Waiting -> Approved, Rejected -> Waiting, etc)
 
 Users (Viewer/Employee) can see all their requests and filter them by status. CalendarView is used to choose dates (Start date and Finish date).
 
