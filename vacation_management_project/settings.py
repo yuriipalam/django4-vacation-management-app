@@ -33,7 +33,7 @@ ALLOWED_HOSTS = [
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'http://test.yuriipalamarchuk.com'
+    'http://vacation-management-demo.yuriipalamarchuk.com'
 ]
 
 
