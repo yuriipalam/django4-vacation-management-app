@@ -1,7 +1,7 @@
 {% extends 'vacation_management_app/base.html' %}
 {% block content %}
 <div class="container d-flex justify-content-center align-items-center" style="height: inherit;">
-    <form class="col-sm-4" method="POST">
+    <form class="col-8 col-sm-5 col-md-4" method="POST">
         {% include 'vacation_management_app/messages.html' %}
         {% csrf_token %}
         <div class="mb-3">
@@ -13,6 +13,7 @@
             <input type="password" class="form-control" id="exampleInputPassword1" name="password" required>
         </div>
         <button type="submit" class="btn btn-primary">Login</button>
+        <p class="mt-3 mb-0 text-secondary" style="font-size:12px;">You can register your own account, but for the admin panel you can use these credentials:<br><i>admin@admin.com<br>admin</i><br>via adding /admin to the URL</p>
     </form>
 </div>
 {% endblock content %}

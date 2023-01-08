@@ -2,8 +2,8 @@
 {% block content %}
 <div class="container d-flex flex-column justify-content-center align-items-center" style="height: inherit;">
     <div class="col-sm-6">{% include 'vacation_management_app/messages.html' %}</div>
-    <h1 class="mb-2">Hello, {{ account.fullname }}</h1>
-    <p class="fs-5">Your current status is <b>{{ account.get_status_display }}</b></p>
+    <h1 class="mb-2 text-center">Hello, {{ account.fullname }}</h1>
+    <p class="fs-5 text-center">Your current status is <b>{{ account.get_status_display }}</b></p>
     <a href="{% url 'vacation_request' %}"><button type="button" class="btn btn-primary mb-2">New Vacation Request</button></a>
     <a href="{% url 'requests_list' %}"><button type="button" class="btn btn-success mb-5">All Requests</button></a>
 </div>

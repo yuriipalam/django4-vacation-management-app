@@ -1,14 +1,14 @@
 {% extends 'vacation_management_app/base.html' %}
 {% block content %}
 <div class="container d-flex justify-content-center align-items-center flex-column" style="height: inherit;">
-    <div class="col-sm-4">{% include 'vacation_management_app/messages.html' %}</div>
+    <div class="col-10 col-sm-6 col-md-5">{% include 'vacation_management_app/messages.html' %}</div>
     {% if unavalaible and not messages %}
-    <div class="alert col-sm-6 alert-warning alert-dismissible fade show" role="alert">
+    <div class="alert col-10 col-sm-6 col-md-5 alert-warning alert-dismissible fade show" role="alert">
         <strong>Attention!</strong> Unfortunately, your current status is <b>Viewer</b>, so you cannot send any requests, ask the administrator to change your status
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     {% endif %}
-    <form class="col-sm-4"{% if unavalaible %}{% else %} method="POST"{% endif %}>
+    <form class="col-10 col-sm-6 col-md-5"{% if unavalaible %}{% else %} method="POST"{% endif %}>
         {% csrf_token %}
         <div class="mb-3">
             <label for="id_start_date" class="form-label mb-1">Start date:</label>
